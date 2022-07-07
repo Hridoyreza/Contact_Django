@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container bg-light border border-dark">
+ <div class="container table table-dark">
+    <table id="table_id" class="display">
+     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th width="200">Name</th>
+            <th width="200">Address</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Type</th>
+        </tr>
+    </thead>
+        <tbody>
+        {% for contact in contacts %}
+        <tr>
+            <td>{{contact.id}}</td>
+            <td>{{contact.name}}</td>
+            <td>{{contact.address}}</td>
+            <td>{{contact.email}}</td>
+            <td>{{contact.phone}}</td>
+            <td>{{contact.type}}</td>
+            <td><a class="badge badge-primary" href ="{% url 'edit' contact.id %}">Edit</a></td>
+            <td> <a class="badge badge-danger" href ="{% url 'delete' contact.id %}">Delete</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+     <script>
+         $(document).ready( function () {
+        $('#table_id').DataTable();
+            } );
+     </script>
+</div>
+</div>
+        {% endblock %}
